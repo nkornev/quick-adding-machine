@@ -9,8 +9,7 @@ public class QuickAddingMachine {
 
     public static void main(String[] args) {
 
-
-
+        CalcForm form = new CalcForm();
     }
 
 }
