@@ -45,6 +45,7 @@ public class CalcForm {
 //        this.bottomPanel.setLayout(new FlowLayout());
 
         this.prepareTopRow();
+        this.prepareCentralRow();
 
         this.mainFrame.setVisible(true);
 
@@ -56,17 +57,50 @@ public class CalcForm {
         GridBagConstraints gbc = new GridBagConstraints();
 
         JPanel headerPanel = new JPanel();
-        headerPanel.setBorder(BorderFactory.createTitledBorder(eBorder, "80pct"));
-        gbc.gridx = gbc.gridy = 0;
+        headerPanel.setBorder(BorderFactory.createTitledBorder(eBorder, "top"));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         gbc.gridwidth = gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.NORTHWEST;
-        gbc.weightx = gbc.weighty = 70;
+        gbc.weightx = 1;
+//        gbc.weighty = 10;
         this.mainFrame.add(headerPanel, gbc);
     }
 
     private void prepareCentralRow() {
+        this.prepareCentralLeftBlock();
+        this.prepareCentralRightBlock();
+    }
 
+    private void prepareCentralLeftBlock() {
+        Border eBorder = BorderFactory.createEtchedBorder();
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        JPanel leftPanel = new JPanel();
+        leftPanel.setBorder(BorderFactory.createTitledBorder(eBorder, "center left"));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = gbc.gridheight = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5;
+        this.mainFrame.add(leftPanel, gbc);
+    }
+
+    private void prepareCentralRightBlock() {
+        Border eBorder = BorderFactory.createEtchedBorder();
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        JPanel rightPanel = new JPanel();
+        rightPanel.setBorder(BorderFactory.createTitledBorder(eBorder, "center right"));
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridwidth = gbc.gridheight = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0.5;
+        this.mainFrame.add(rightPanel, gbc);
     }
 
     private void prepareControlPanel() {
