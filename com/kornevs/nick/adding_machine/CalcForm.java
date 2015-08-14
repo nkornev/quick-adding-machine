@@ -14,8 +14,6 @@ import java.awt.event.WindowEvent;
 public class CalcForm {
 
     private JFrame mainFrame;
-//    private JPanel controlPanel;
-//    private JPanel bottomPanel;
 
     public CalcForm() {
         this.prepareGUI();
@@ -24,48 +22,56 @@ public class CalcForm {
     private void prepareGUI() {
         this.mainFrame = new JFrame("Quick Adding Machine");
         this.mainFrame.setLayout(new GridBagLayout());
-
-
-
-
         this.mainFrame.setSize(600, 600);
-//        this.mainFrame.setLayout(new GridLayout(3, 1));
-
-        JLabel headerLabel = new JLabel("some text with instructions", JLabel.CENTER);
 
         this.mainFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
                 System.exit(0);
             }
         });
-//        this.controlPanel = new JPanel();
-//        this.controlPanel.setLayout(new FlowLayout());
-//
-//        this.bottomPanel = new JPanel();
-//        this.bottomPanel.setLayout(new FlowLayout());
 
         this.prepareTopRow();
         this.prepareCentralRow();
+        this.prepareBottomRow();
 
         this.mainFrame.setVisible(true);
-
-//        this.prepareControlPanel();
     }
 
     private void prepareTopRow() {
         Border eBorder = BorderFactory.createEtchedBorder();
         GridBagConstraints gbc = new GridBagConstraints();
 
-        JPanel headerPanel = new JPanel();
+        JPanel headerPanel = new JPanel(new GridBagLayout());
         headerPanel.setBorder(BorderFactory.createTitledBorder(eBorder, "top"));
+
+        this.prepareTopRowContent(headerPanel);
+
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = gbc.gridheight = 1;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.anchor = GridBagConstraints.WEST;
         gbc.weightx = 1;
-//        gbc.weighty = 10;
+
         this.mainFrame.add(headerPanel, gbc);
+    }
+
+    private void prepareTopRowContent(JPanel headerPanel)
+    {
+        JLabel headerLabel = new JLabel("some text with instructions", JLabel.LEFT);
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+
+        headerPanel.add(headerLabel, gbc);
     }
 
     private void prepareCentralRow() {
@@ -77,11 +83,12 @@ public class CalcForm {
         Border eBorder = BorderFactory.createEtchedBorder();
         GridBagConstraints gbc = new GridBagConstraints();
 
-        JPanel leftPanel = new JPanel();
+        JPanel leftPanel = new JPanel(new GridBagLayout());
         leftPanel.setBorder(BorderFactory.createTitledBorder(eBorder, "center left"));
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.gridwidth = gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.weightx = 0.5;
@@ -92,82 +99,32 @@ public class CalcForm {
         Border eBorder = BorderFactory.createEtchedBorder();
         GridBagConstraints gbc = new GridBagConstraints();
 
-        JPanel rightPanel = new JPanel();
+        JPanel rightPanel = new JPanel(new GridBagLayout());
         rightPanel.setBorder(BorderFactory.createTitledBorder(eBorder, "center right"));
         gbc.gridx = 1;
         gbc.gridy = 1;
-        gbc.gridwidth = gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.EAST;
         gbc.weightx = 0.5;
         this.mainFrame.add(rightPanel, gbc);
     }
 
-    private void prepareControlPanel() {
-
+    private void prepareBottomRow() {
         Border eBorder = BorderFactory.createEtchedBorder();
         GridBagConstraints gbc = new GridBagConstraints();
-//        this.mainFrame.setLayout(new GridBagLayout());
 
-
-
-//        JPanel centralPanel = new JPanel();
-//        centralPanel.setSize(500, 500);
-//        centralPanel.setLayout(new GridBagLayout());
-
-        JPanel centralPanelLeft = new JPanel();
-//        centralPanelLeft.setSize(250, 500);
-        centralPanelLeft.setBorder(BorderFactory.createTitledBorder(eBorder, "80pct"));
-//        centralPanelLeft.setLayout(new GridBagLayout());
-
-        JPanel centralPanelRight = new JPanel();
-//        centralPanelRight.setSize(250, 500);
-        centralPanelRight.setBorder(BorderFactory.createTitledBorder(eBorder, "20pct"));
-//        centralPanelRight.setLayout(new GridBagLayout());
-
-//        GridBagConstraints gbc = new GridBagConstraints();
-
-//        gbc.fill = GridBagConstraints.HORIZONTAL;
-//        gbc.gridx = 0;
-//        gbc.gridy = 0;
-//        gbc.gridwidth = gbc.gridheight = 1;
-//        gbc.fill = GridBagConstraints.BOTH;
-//        gbc.anchor = GridBagConstraints.NORTHWEST;
-//        gbc.weightx = gbc.weighty = 70;
-        centralPanelLeft.add(new JLabel("Enter number:"), gbc);
-
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        JPanel footerPanel = new JPanel();
+        footerPanel.setBorder(BorderFactory.createTitledBorder(eBorder, "bottom"));
         gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = gbc.gridheight = 1;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.NORTHWEST;
-        gbc.weightx = gbc.weighty = 70;
-        this.mainFrame.add(centralPanelLeft,gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        this.mainFrame.add(centralPanelRight,gbc);
-
-//        gbc.fill = GridBagConstraints.HORIZONTAL;
-//        gbc.ipady = 20;
-//        gbc.gridx = 0;
-//        gbc.gridy = 1;
-//        panel.add(new JButton("Button 3"),gbc);
-//
-//        gbc.gridx = 1;
-//        gbc.gridy = 1;
-//        panel.add(new JButton("Button 4"),gbc);
-//
-//        gbc.gridx = 0;
-//        gbc.gridy = 2;
-//        gbc.fill = GridBagConstraints.HORIZONTAL;
-//        gbc.gridwidth = 2;
-//        panel.add(new JButton("Button 5"),gbc);
-
-//        this.controlPanel.add(centralPanel);
-
-//        this.mainFrame.setVisible(true);
+        gbc.weightx = 1;
+        this.mainFrame.add(footerPanel, gbc);
     }
 
 }
